@@ -32,8 +32,9 @@ buildscript {
         // room
         room_version = '2.2.2'
 
-        // lifeCycle (viewModel)
+        // aac
         lifecycle_version = '2.1.0'
+        arch_compoment_version = '2.0.0'
 
         // koin
         koin_version = '2.1.5'

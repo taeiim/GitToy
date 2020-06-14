@@ -81,8 +81,9 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-rxjava2:$room_version" //rx
 
-    // viewModel, liveData
+    // aac
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    testImplementation "androidx.arch.core:core-testing:$arch_compoment_version"
 
     // koin
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
