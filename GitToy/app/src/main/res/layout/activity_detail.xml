@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="android.app.Activity" />
+
+        <variable
+            name="repo"
+            type="com.taeiim.gittoy.api.model.GithubRepo" />
+
+        <variable
+            name="user"
+            type="com.taeiim.gittoy.api.model.GithubUser" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:background="@color/gray8"
+            app:contentInsetStart="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> ((Activity)context).finish()}"
+                android:paddingLeft="12dp"
+                android:src="@drawable/ic_chevron_left"
+                android:tint="@color/gray3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:includeFontPadding="false"
+                android:text="Repository"
+                android:textColor="@color/gray1"
+                android:textSize="14sp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray6"
+            app:layout_constraintTop_toBottomOf="@id/toolBar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/repoLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view1">
+
+            <TextView
+                android:id="@+id/repoNameTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{repo.repoName}"
+                android:textColor="@color/textBlack"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Repository Name" />
+
+            <TextView
+                android:id="@+id/descTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:includeFontPadding="false"
+                android:text="@{repo.description}"
+                android:textColor="@color/gray1"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/repoNameTv"
+                tools:text="taeiim android repository" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descTv">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_star"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/gray4"
+                    android:includeFontPadding="false"
+                    android:text="@{String.valueOf(repo.starCnt)}"
+                    android:textColor="@color/gray2"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="9300" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:includeFontPadding="false"
+                    android:text="Stars"
+                    android:textColor="@color/gray3"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:drawableLeft="@drawable/ic_forked"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/gray4"
+                    android:includeFontPadding="false"
+                    android:text="@{String.valueOf(repo.forksCount)}"
+                    android:textColor="@color/gray2"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="9300" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:includeFontPadding="false"
+                    android:text="Forks"
+                    android:textColor="@color/gray3"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/gray6"
+            app:layout_constraintTop_toBottomOf="@id/repoLayout" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="12dp"
+            android:background="@color/gray8"
+            app:layout_constraintTop_toBottomOf="@id/view2" />
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray6"
+            app:layout_constraintTop_toBottomOf="@id/view3" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/userInfoLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/view4">
+
+            <ImageView
+                android:id="@+id/profileIv"
+                android:layout_width="74dp"
+                android:layout_height="74dp"
+                android:layout_marginBottom="12dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintBottom_toTopOf="@+id/biographyTv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                bind:loadUrl="@{user.profileImgUrl}" />
+
+            <TextView
+                android:id="@+id/userNameTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@{user.name.length() == 0 ? user.login : user.name }"
+                android:textColor="@color/textBlack"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/subNameTv"
+                app:layout_constraintStart_toEndOf="@+id/profileIv"
+                app:layout_constraintTop_toTopOf="@+id/profileIv"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Taeim Park" />
+
+            <TextView
+                android:id="@+id/subNameTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{user.login}"
+                android:textColor="@color/gray3"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/profileIv"
+                app:layout_constraintStart_toStartOf="@+id/userNameTv"
+                app:layout_constraintTop_toBottomOf="@+id/userNameTv"
+                tools:text="taeiim" />
+
+            <TextView
+                android:id="@+id/biographyTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:paddingBottom="4dp"
+                android:text="@{user.bio}"
+                android:textColor="@color/textBlack"
+                android:textSize="14sp"
+                android:visibility="@{user.bio.length() == 0 ? View.GONE : View.VISIBLE}"
+                app:layout_constraintBottom_toTopOf="@+id/emailTv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profileIv"
+                tools:text="Android Developer" />
+
+            <TextView
+                android:id="@+id/emailTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/gray4"
+                android:includeFontPadding="false"
+                android:text="@{user.email}"
+                android:textColor="@color/gray2"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:visibility="@{user.email.length() == 0 ? View.GONE : View.VISIBLE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/biographyTv"
+                tools:text="taeiim.dev@gmail.com" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/emailTv">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_user"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/gray4"
+                    android:includeFontPadding="false"
+                    android:text="@{String.valueOf(user.followers)}"
+                    android:textColor="@color/gray2"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="4" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text=" followers · "
+                    android:textColor="@color/gray3"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="@{String.valueOf(user.following)}"
+                    android:textColor="@color/gray2"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="42" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text=" following"
+                    android:textColor="@color/gray3"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
