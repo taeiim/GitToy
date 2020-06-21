@@ -1,27 +1,21 @@
 package com.taeiim.gittoy.ui.detail
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.taeiim.gittoy.R
 import com.taeiim.gittoy.base.BaseActivity
 import com.taeiim.gittoy.databinding.ActivityDetailBinding
-import com.taeiim.gittoy.di.injectViewModel
 import com.taeiim.gittoy.ui.RepoRecyclerAdapter
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailActivity : BaseActivity<ActivityDetailBinding>(R.layout.activity_detail) {
 
-    private lateinit var vm: DetailViewModel
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    val vm by viewModels<DetailViewModel>()
 
     private val userName by lazy { intent?.getStringExtra(RepoRecyclerAdapter.KEY_USER_NAME) ?: "" }
     private val repoName by lazy { intent?.getStringExtra(RepoRecyclerAdapter.KEY_REPO_NAME) ?: "" }
-
-    override fun initializeViewModel() {
-        vm = injectViewModel(viewModelFactory)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

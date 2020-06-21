@@ -2,8 +2,8 @@ package com.taeiim.gittoy.ui.main
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.taeiim.gittoy.BR
 import com.taeiim.gittoy.R
 import com.taeiim.gittoy.api.model.GithubRepo
@@ -11,32 +11,25 @@ import com.taeiim.gittoy.base.BaseActivity
 import com.taeiim.gittoy.common.EventObserver
 import com.taeiim.gittoy.databinding.ActivityMainBinding
 import com.taeiim.gittoy.databinding.ItemRepoBinding
-import com.taeiim.gittoy.di.injectViewModel
 import com.taeiim.gittoy.ext.start
 import com.taeiim.gittoy.ui.RepoRecyclerAdapter
 import com.taeiim.gittoy.ui.search.SearchActivity
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
-    private lateinit var vm: MainViewModel
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val vm by viewModels<MainViewModel>()
 
     private lateinit var repoAdapter: RepoRecyclerAdapter<GithubRepo, ItemRepoBinding>
 
-    override fun initializeViewModel() {
-        vm = injectViewModel(viewModelFactory)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding.setVariable(BR.vm, vm)
         setup()
     }
 
     private fun setup() {
-        binding.vm = vm
-
         repoAdapter = RepoRecyclerAdapter(this, false, R.layout.item_repo, BR.repo)
         binding.historyRepoRv.adapter = repoAdapter
 
