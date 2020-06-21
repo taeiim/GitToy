@@ -5,6 +5,8 @@ import com.taeiim.gittoy.BuildConfig
 import com.taeiim.gittoy.api.GithubApi
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,6 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
+@InstallIn(ApplicationComponent::class)
 class NetworkModule {
 
     private val logger: HttpLoggingInterceptor =

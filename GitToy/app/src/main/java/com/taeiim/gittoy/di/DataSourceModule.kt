@@ -11,9 +11,12 @@ import com.taeiim.gittoy.data.source.local.SearchRepoHistoryDatabase
 import com.taeiim.gittoy.data.source.remote.GithubRemoteDataSourceImpl
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Singleton
 
 @Module
+@InstallIn(ApplicationComponent::class)
 class DataSourceModule {
     @Provides
     @Singleton
