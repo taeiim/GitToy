@@ -16,8 +16,8 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideGithubRepository(
-        @DataSourceModule.RemoteGithubDataSource remoteGithubDataSource: GithubDataSource.Remote,
-        @DataSourceModule.LocalGithubDataSource localGithubDataSource: GithubDataSource.Local
+        remoteGithubDataSource: GithubDataSource.Remote,
+        localGithubDataSource: GithubDataSource.Local
     ): GithubRepository {
         return GithubRepositoryImpl(remoteGithubDataSource, localGithubDataSource)
     }

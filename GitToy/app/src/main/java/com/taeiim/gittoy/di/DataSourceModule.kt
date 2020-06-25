@@ -12,31 +12,19 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Qualifier
 import javax.inject.Singleton
-import kotlin.annotation.AnnotationRetention.RUNTIME
 
 @Module
 @InstallIn(ApplicationComponent::class)
 object DataSourceModule {
 
-    @Qualifier
-    @Retention(RUNTIME)
-    annotation class RemoteGithubDataSource
-
-    @Qualifier
-    @Retention(RUNTIME)
-    annotation class LocalGithubDataSource
-
     @Singleton
-    @RemoteGithubDataSource
     @Provides
-    fun provideGithubRemoteDataSource(@NetworkModule.GithubApis githubApi: GithubApi): GithubDataSource.Remote {
+    fun provideGithubRemoteDataSource(githubApi: GithubApi): GithubDataSource.Remote {
         return GithubRemoteDataSourceImpl(githubApi)
     }
 
     @Singleton
-    @LocalGithubDataSource
     @Provides
     fun provideGithubDataSource(
         database: SearchRepoHistoryDatabase
