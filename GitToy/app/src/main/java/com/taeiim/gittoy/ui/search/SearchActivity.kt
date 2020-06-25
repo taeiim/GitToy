@@ -2,6 +2,7 @@ package com.taeiim.gittoy.ui.search
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.taeiim.gittoy.BR
 import com.taeiim.gittoy.R
@@ -11,11 +12,12 @@ import com.taeiim.gittoy.databinding.ActivitySearchBinding
 import com.taeiim.gittoy.databinding.ItemRepoBinding
 import com.taeiim.gittoy.ui.RepoRecyclerAdapter
 import com.taeiim.gittoy.ui.main.MainActivity
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchActivity : BaseActivity<ActivitySearchBinding>(R.layout.activity_search) {
 
-    private val vm: SearchViewModel by viewModel()
+    private val vm by viewModels<SearchViewModel>()
     private lateinit var repoAdapter: RepoRecyclerAdapter<GithubRepo, ItemRepoBinding>
 
     private val searchWord by lazy { intent?.getStringExtra(MainActivity.KEY_SEARCH_WORD) ?: "" }

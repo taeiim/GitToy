@@ -1,16 +1,18 @@
 package com.taeiim.gittoy.ui.detail
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.taeiim.gittoy.R
 import com.taeiim.gittoy.base.BaseActivity
 import com.taeiim.gittoy.databinding.ActivityDetailBinding
 import com.taeiim.gittoy.ui.RepoRecyclerAdapter
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailActivity : BaseActivity<ActivityDetailBinding>(R.layout.activity_detail) {
 
-    private val vm: DetailViewModel by viewModel()
+    private val vm by viewModels<DetailViewModel>()
 
     private val userName by lazy { intent?.getStringExtra(RepoRecyclerAdapter.KEY_USER_NAME) ?: "" }
     private val repoName by lazy { intent?.getStringExtra(RepoRecyclerAdapter.KEY_REPO_NAME) ?: "" }

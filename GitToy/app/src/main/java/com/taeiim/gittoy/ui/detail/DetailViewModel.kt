@@ -1,5 +1,6 @@
 package com.taeiim.gittoy.ui.detail
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.taeiim.gittoy.api.model.GithubRepo
@@ -8,7 +9,9 @@ import com.taeiim.gittoy.base.BaseViewModel
 import com.taeiim.gittoy.data.GithubRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 
-class DetailViewModel(private val githubRepository: GithubRepository) : BaseViewModel() {
+class DetailViewModel @ViewModelInject constructor(
+    private val githubRepository: GithubRepository
+) : BaseViewModel() {
 
     private val _user = MutableLiveData<GithubUser>()
     val user: LiveData<GithubUser>
