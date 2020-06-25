@@ -1,6 +1,5 @@
 package com.taeiim.gittoy.di
 
-import androidx.annotation.NonNull
 import com.taeiim.gittoy.BuildConfig
 import com.taeiim.gittoy.api.GithubApi
 import dagger.Module
@@ -44,8 +43,8 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofit(
-        @NonNull okHttpClient: OkHttpClient,
-        @NonNull rxJava2CallAdapterFactory: RxJava2CallAdapterFactory
+        okHttpClient: OkHttpClient,
+        rxJava2CallAdapterFactory: RxJava2CallAdapterFactory
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://api.github.com/")
@@ -57,7 +56,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideGithubApi(@NonNull retrofit: Retrofit): GithubApi {
+    fun provideGithubApi(retrofit: Retrofit): GithubApi {
         return retrofit.create(GithubApi::class.java)
     }
 
