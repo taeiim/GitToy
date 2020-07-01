@@ -22,7 +22,7 @@ class DataSourceModule {
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): SearchRepoHistoryDatabase {
         return Room.databaseBuilder(
-            context.applicationContext,
+            context,
             SearchRepoHistoryDatabase::class.java, SearchRepoHistoryDatabase.DB_NAME
         ).build()
     }
